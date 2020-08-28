@@ -1,5 +1,7 @@
 package efc;
 
+import java.util.Random;
+
 public class Luta {
 
     private Lutador desafiado; // tipo abstrato de dado -> instancia da classe lutador
@@ -58,9 +60,9 @@ public class Luta {
             - Só pode ter como resultado a vitória de um dos lutadores ou o empate.
 
     */
-
+                         //Desafiado   Desafiante
     public void marcarLuta(Lutador l1, Lutador l2) {
-        if (l1.getCategoria() == l2.getCategoria() && l1 != l2) {
+        if (l1.getCategoria().equals(l2.getCategoria()) && l1 != l2) { //Comparação entre strings é melhor usar .equals
             setAprovada(true);
             setDesafiado(l1);
             setDesafiante(l2);
@@ -74,8 +76,38 @@ public class Luta {
 
 
     public void lutar() {
-        if (aprovada) {
+        if (isAprovada()) {
+            System.out.println("### Desafiado ###");
+            this.desafiado.apresentar();
+            System.out.println("### Desafiante ###");
+            this.desafiante.apresentar();
+
+            Random aleatorio = new Random();
             
+            int vencedor = aleatorio.nextInt(3);  //Número randomico -> 0 1 2
+
+
+
+            switch (vencedor) {
+                case 0: //Empate
+                    System.out.println("Empatou!");
+                    this.desafiado.empatarLuta();
+                    this.desafiante.apresentar();
+                    break;
+
+                case 1: //Vitória desafiado
+                    System.out.println("Vitória do " + this.desafiado.getNome());
+                    this.desafiado.ganharLuta();
+                    this.desafiante.perderLuta();
+                    break;
+
+                case 2: //Vitória desafiante
+                    System.out.println("Vitória do " + this.desafiante.getNome());
+                    this.desafiado.perderLuta();
+                    this.desafiante.ganharLuta();
+                    break;
+            }
+
         }
         else {
             System.out.println("Luta não pode acontecer");

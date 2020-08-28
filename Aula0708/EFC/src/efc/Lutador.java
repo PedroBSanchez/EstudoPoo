@@ -141,18 +141,15 @@ public class Lutador {
 
     public void ganharLuta() {
         setVitorias(getVitorias() + 1);
-        System.out.println(getNome() + " ganhou a luta");
     }
 
     public void perderLuta() {
         setDerrotas(getDerrotas() + 1);
-        System.out.println(getNome() + " perdeu a luta");
         
     }
 
     public void empatarLuta() {
         setEmpates(getEmpates() + 1);
-        System.out.println(getNome() + " empatou a luta");
     }
 
 }
